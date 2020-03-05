@@ -26,7 +26,7 @@
     "useSass": true,
     "clientPackageManager": "npm",
     "clientFramework": "angularX",
-    "clientTheme": "materia",
+    "clientTheme": "default",
     "clientThemeVariant": "primary",
     "creationTimestamp": 1583344781989,
     "testFrameworks": ["gatling", "cucumber", "protractor"],
