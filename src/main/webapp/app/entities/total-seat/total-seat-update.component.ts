@@ -26,7 +26,7 @@ export class TotalSeatUpdateComponent implements OnInit {
     createdOn: [],
     modifiedOn: [],
     modifiedBy: [],
-    facultyProgramId: []
+    facultyProgramId: [null, Validators.required]
   });
 
   constructor(

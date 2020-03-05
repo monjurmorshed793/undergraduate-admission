@@ -35,7 +35,8 @@ public class TotalSeat implements Serializable {
     @Column(name = "modified_by")
     private String modifiedBy;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("totalSeats")
     private FaProgram facultyProgram;
 

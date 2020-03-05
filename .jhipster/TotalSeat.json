@@ -26,6 +26,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "faProgram",
             "otherEntityRelationshipName": "totalSeat",
+            "relationshipValidateRules": "required",
             "relationshipName": "facultyProgram",
             "otherEntityField": "id"
         }

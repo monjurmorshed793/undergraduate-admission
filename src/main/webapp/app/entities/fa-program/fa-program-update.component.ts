@@ -33,9 +33,9 @@ export class FaProgramUpdateComponent implements OnInit {
     createdOn: [],
     modifiedOn: [],
     modifiedBy: [],
-    semesterId: [],
-    facultyId: [],
-    programId: []
+    semesterId: [null, Validators.required],
+    facultyId: [null, Validators.required],
+    programId: [null, Validators.required]
   });
 
   constructor(

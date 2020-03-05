@@ -108,6 +108,36 @@ public class FaProgramResourceIT {
             .createdOn(DEFAULT_CREATED_ON)
             .modifiedOn(DEFAULT_MODIFIED_ON)
             .modifiedBy(DEFAULT_MODIFIED_BY);
+        // Add required entity
+        Semester semester;
+        if (TestUtil.findAll(em, Semester.class).isEmpty()) {
+            semester = SemesterResourceIT.createEntity(em);
+            em.persist(semester);
+            em.flush();
+        } else {
+            semester = TestUtil.findAll(em, Semester.class).get(0);
+        }
+        faProgram.setSemester(semester);
+        // Add required entity
+        Faculty faculty;
+        if (TestUtil.findAll(em, Faculty.class).isEmpty()) {
+            faculty = FacultyResourceIT.createEntity(em);
+            em.persist(faculty);
+            em.flush();
+        } else {
+            faculty = TestUtil.findAll(em, Faculty.class).get(0);
+        }
+        faProgram.setFaculty(faculty);
+        // Add required entity
+        Program program;
+        if (TestUtil.findAll(em, Program.class).isEmpty()) {
+            program = ProgramResourceIT.createEntity(em);
+            em.persist(program);
+            em.flush();
+        } else {
+            program = TestUtil.findAll(em, Program.class).get(0);
+        }
+        faProgram.setProgram(program);
         return faProgram;
     }
     /**
@@ -121,6 +151,36 @@ public class FaProgramResourceIT {
             .createdOn(UPDATED_CREATED_ON)
             .modifiedOn(UPDATED_MODIFIED_ON)
             .modifiedBy(UPDATED_MODIFIED_BY);
+        // Add required entity
+        Semester semester;
+        if (TestUtil.findAll(em, Semester.class).isEmpty()) {
+            semester = SemesterResourceIT.createUpdatedEntity(em);
+            em.persist(semester);
+            em.flush();
+        } else {
+            semester = TestUtil.findAll(em, Semester.class).get(0);
+        }
+        faProgram.setSemester(semester);
+        // Add required entity
+        Faculty faculty;
+        if (TestUtil.findAll(em, Faculty.class).isEmpty()) {
+            faculty = FacultyResourceIT.createUpdatedEntity(em);
+            em.persist(faculty);
+            em.flush();
+        } else {
+            faculty = TestUtil.findAll(em, Faculty.class).get(0);
+        }
+        faProgram.setFaculty(faculty);
+        // Add required entity
+        Program program;
+        if (TestUtil.findAll(em, Program.class).isEmpty()) {
+            program = ProgramResourceIT.createUpdatedEntity(em);
+            em.persist(program);
+            em.flush();
+        } else {
+            program = TestUtil.findAll(em, Program.class).get(0);
+        }
+        faProgram.setProgram(program);
         return faProgram;
     }
 
@@ -514,12 +574,8 @@ public class FaProgramResourceIT {
     @Test
     @Transactional
     public void getAllFaProgramsBySemesterIsEqualToSomething() throws Exception {
-        // Initialize the database
-        faProgramRepository.saveAndFlush(faProgram);
-        Semester semester = SemesterResourceIT.createEntity(em);
-        em.persist(semester);
-        em.flush();
-        faProgram.setSemester(semester);
+        // Get already existing entity
+        Semester semester = faProgram.getSemester();
         faProgramRepository.saveAndFlush(faProgram);
         Long semesterId = semester.getId();
 
@@ -534,12 +590,8 @@ public class FaProgramResourceIT {
     @Test
     @Transactional
     public void getAllFaProgramsByFacultyIsEqualToSomething() throws Exception {
-        // Initialize the database
-        faProgramRepository.saveAndFlush(faProgram);
-        Faculty faculty = FacultyResourceIT.createEntity(em);
-        em.persist(faculty);
-        em.flush();
-        faProgram.setFaculty(faculty);
+        // Get already existing entity
+        Faculty faculty = faProgram.getFaculty();
         faProgramRepository.saveAndFlush(faProgram);
         Long facultyId = faculty.getId();
 
@@ -554,12 +606,8 @@ public class FaProgramResourceIT {
     @Test
     @Transactional
     public void getAllFaProgramsByProgramIsEqualToSomething() throws Exception {
-        // Initialize the database
-        faProgramRepository.saveAndFlush(faProgram);
-        Program program = ProgramResourceIT.createEntity(em);
-        em.persist(program);
-        em.flush();
-        faProgram.setProgram(program);
+        // Get already existing entity
+        Program program = faProgram.getProgram();
         faProgramRepository.saveAndFlush(faProgram);
         Long programId = program.getId();
 

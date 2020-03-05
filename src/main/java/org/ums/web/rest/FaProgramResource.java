@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -56,7 +57,7 @@ public class FaProgramResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/fa-programs")
-    public ResponseEntity<FaProgramDTO> createFaProgram(@RequestBody FaProgramDTO faProgramDTO) throws URISyntaxException {
+    public ResponseEntity<FaProgramDTO> createFaProgram(@Valid @RequestBody FaProgramDTO faProgramDTO) throws URISyntaxException {
         log.debug("REST request to save FaProgram : {}", faProgramDTO);
         if (faProgramDTO.getId() != null) {
             throw new BadRequestAlertException("A new faProgram cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +78,7 @@ public class FaProgramResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/fa-programs")
-    public ResponseEntity<FaProgramDTO> updateFaProgram(@RequestBody FaProgramDTO faProgramDTO) throws URISyntaxException {
+    public ResponseEntity<FaProgramDTO> updateFaProgram(@Valid @RequestBody FaProgramDTO faProgramDTO) throws URISyntaxException {
         log.debug("REST request to update FaProgram : {}", faProgramDTO);
         if (faProgramDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

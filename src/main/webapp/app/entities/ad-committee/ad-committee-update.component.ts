@@ -36,10 +36,10 @@ export class AdCommitteeUpdateComponent implements OnInit {
     createdOn: [],
     modifiedOn: [],
     modifiedBy: [],
-    semesterId: [],
-    facultyId: [],
-    designationId: [],
-    userId: []
+    semesterId: [null, Validators.required],
+    facultyId: [null, Validators.required],
+    designationId: [null, Validators.required],
+    userId: [null, Validators.required]
   });
 
   constructor(

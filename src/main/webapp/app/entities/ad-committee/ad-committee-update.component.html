@@ -40,33 +40,57 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_semester">Semester</label>
                     <select class="form-control" id="field_semester" name="semester" formControlName="semesterId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('semesterId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="semesterOption.id" *ngFor="let semesterOption of semesters; trackBy: trackById">{{ semesterOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('semesterId')!.invalid && (editForm.get('semesterId')!.dirty || editForm.get('semesterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('semesterId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_faculty">Faculty</label>
                     <select class="form-control" id="field_faculty" name="faculty" formControlName="facultyId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('facultyId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="facultyOption.id" *ngFor="let facultyOption of faculties; trackBy: trackById">{{ facultyOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('facultyId')!.invalid && (editForm.get('facultyId')!.dirty || editForm.get('facultyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('facultyId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_designation">Designation</label>
                     <select class="form-control" id="field_designation" name="designation" formControlName="designationId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('designationId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="admissionDesignationOption.id" *ngFor="let admissionDesignationOption of admissiondesignations; trackBy: trackById">{{ admissionDesignationOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('designationId')!.invalid && (editForm.get('designationId')!.dirty || editForm.get('designationId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('designationId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" formControlName="userId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('userId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('userId')!.invalid && (editForm.get('userId')!.dirty || editForm.get('userId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('userId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
 

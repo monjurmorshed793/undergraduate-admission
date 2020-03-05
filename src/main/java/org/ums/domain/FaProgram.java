@@ -3,6 +3,7 @@ package org.ums.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -30,15 +31,18 @@ public class FaProgram implements Serializable {
     @Column(name = "modified_by")
     private String modifiedBy;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("faPrograms")
     private Semester semester;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("faPrograms")
     private Faculty faculty;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("faPrograms")
     private Program program;
 

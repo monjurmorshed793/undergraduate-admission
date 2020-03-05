@@ -1,7 +1,11 @@
-import { browser, ExpectedConditions as ec, promise } from 'protractor';
+import { browser, ExpectedConditions as ec /* , promise */ } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
-import { AdCommitteeComponentsPage, AdCommitteeDeleteDialog, AdCommitteeUpdatePage } from './ad-committee.page-object';
+import {
+  AdCommitteeComponentsPage,
+  /* AdCommitteeDeleteDialog, */
+  AdCommitteeUpdatePage
+} from './ad-committee.page-object';
 
 const expect = chai.expect;
 
@@ -10,7 +14,7 @@ describe('AdCommittee e2e test', () => {
   let signInPage: SignInPage;
   let adCommitteeComponentsPage: AdCommitteeComponentsPage;
   let adCommitteeUpdatePage: AdCommitteeUpdatePage;
-  let adCommitteeDeleteDialog: AdCommitteeDeleteDialog;
+  /* let adCommitteeDeleteDialog: AdCommitteeDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -38,41 +42,42 @@ describe('AdCommittee e2e test', () => {
     await adCommitteeUpdatePage.cancel();
   });
 
-  it('should create and save AdCommittees', async () => {
-    const nbButtonsBeforeCreate = await adCommitteeComponentsPage.countDeleteButtons();
+  /* it('should create and save AdCommittees', async () => {
+        const nbButtonsBeforeCreate = await adCommitteeComponentsPage.countDeleteButtons();
 
-    await adCommitteeComponentsPage.clickOnCreateButton();
+        await adCommitteeComponentsPage.clickOnCreateButton();
 
-    await promise.all([
-      adCommitteeUpdatePage.setCreatedOnInput('2000-12-31'),
-      adCommitteeUpdatePage.setModifiedOnInput('2000-12-31'),
-      adCommitteeUpdatePage.setModifiedByInput('modifiedBy'),
-      adCommitteeUpdatePage.semesterSelectLastOption(),
-      adCommitteeUpdatePage.facultySelectLastOption(),
-      adCommitteeUpdatePage.designationSelectLastOption(),
-      adCommitteeUpdatePage.userSelectLastOption()
-    ]);
+        await promise.all([
+            adCommitteeUpdatePage.setCreatedOnInput('2000-12-31'),
+            adCommitteeUpdatePage.setModifiedOnInput('2000-12-31'),
+            adCommitteeUpdatePage.setModifiedByInput('modifiedBy'),
+            adCommitteeUpdatePage.semesterSelectLastOption(),
+            adCommitteeUpdatePage.facultySelectLastOption(),
+            adCommitteeUpdatePage.designationSelectLastOption(),
+            adCommitteeUpdatePage.userSelectLastOption(),
+        ]);
 
-    expect(await adCommitteeUpdatePage.getCreatedOnInput()).to.eq('2000-12-31', 'Expected createdOn value to be equals to 2000-12-31');
-    expect(await adCommitteeUpdatePage.getModifiedOnInput()).to.eq('2000-12-31', 'Expected modifiedOn value to be equals to 2000-12-31');
-    expect(await adCommitteeUpdatePage.getModifiedByInput()).to.eq('modifiedBy', 'Expected ModifiedBy value to be equals to modifiedBy');
+        expect(await adCommitteeUpdatePage.getCreatedOnInput()).to.eq('2000-12-31', 'Expected createdOn value to be equals to 2000-12-31');
+        expect(await adCommitteeUpdatePage.getModifiedOnInput()).to.eq('2000-12-31', 'Expected modifiedOn value to be equals to 2000-12-31');
+        expect(await adCommitteeUpdatePage.getModifiedByInput()).to.eq('modifiedBy', 'Expected ModifiedBy value to be equals to modifiedBy');
 
-    await adCommitteeUpdatePage.save();
-    expect(await adCommitteeUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await adCommitteeUpdatePage.save();
+        expect(await adCommitteeUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await adCommitteeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await adCommitteeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last AdCommittee', async () => {
-    const nbButtonsBeforeDelete = await adCommitteeComponentsPage.countDeleteButtons();
-    await adCommitteeComponentsPage.clickOnLastDeleteButton();
+  /* it('should delete last AdCommittee', async () => {
+        const nbButtonsBeforeDelete = await adCommitteeComponentsPage.countDeleteButtons();
+        await adCommitteeComponentsPage.clickOnLastDeleteButton();
 
-    adCommitteeDeleteDialog = new AdCommitteeDeleteDialog();
-    expect(await adCommitteeDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this Ad Committee?');
-    await adCommitteeDeleteDialog.clickOnConfirmButton();
+        adCommitteeDeleteDialog = new AdCommitteeDeleteDialog();
+        expect(await adCommitteeDeleteDialog.getDialogTitle())
+            .to.eq('Are you sure you want to delete this Ad Committee?');
+        await adCommitteeDeleteDialog.clickOnConfirmButton();
 
-    expect(await adCommitteeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await adCommitteeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

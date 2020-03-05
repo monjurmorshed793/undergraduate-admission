@@ -1,11 +1,11 @@
-id;seat;created_on;modified_on;modified_by
-1;55206;2020-03-04;2020-03-05;transmit Industrial
-2;28175;2020-03-05;2020-03-05;Generic Rubber Chips
-3;67794;2020-03-05;2020-03-05;Mountains Savings Account
-4;43117;2020-03-05;2020-03-05;internet solution 1080p
-5;12741;2020-03-04;2020-03-05;innovative didactic Oregon
-6;86722;2020-03-04;2020-03-04;Savings Account Intelligent Steel Ball invoice
-7;48215;2020-03-04;2020-03-05;Brooks Checking Account
-8;96745;2020-03-05;2020-03-05;web services
-9;12834;2020-03-04;2020-03-05;Fish
-10;11584;2020-03-05;2020-03-04;Assistant
+id;seat;created_on;modified_on;modified_by;faculty_program_id
+1;55206;2020-03-04;2020-03-05;transmit Industrial;1
+2;28175;2020-03-05;2020-03-05;Generic Rubber Chips;2
+3;67794;2020-03-05;2020-03-05;Mountains Savings Account;3
+4;43117;2020-03-05;2020-03-05;internet solution 1080p;4
+5;12741;2020-03-04;2020-03-05;innovative didactic Oregon;5
+6;86722;2020-03-04;2020-03-04;Savings Account Intelligent Steel Ball invoice;6
+7;48215;2020-03-04;2020-03-05;Brooks Checking Account;7
+8;96745;2020-03-05;2020-03-05;web services;8
+9;12834;2020-03-04;2020-03-05;Fish;9
+10;11584;2020-03-05;2020-03-04;Assistant;10

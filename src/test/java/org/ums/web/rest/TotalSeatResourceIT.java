@@ -111,6 +111,16 @@ public class TotalSeatResourceIT {
             .createdOn(DEFAULT_CREATED_ON)
             .modifiedOn(DEFAULT_MODIFIED_ON)
             .modifiedBy(DEFAULT_MODIFIED_BY);
+        // Add required entity
+        FaProgram faProgram;
+        if (TestUtil.findAll(em, FaProgram.class).isEmpty()) {
+            faProgram = FaProgramResourceIT.createEntity(em);
+            em.persist(faProgram);
+            em.flush();
+        } else {
+            faProgram = TestUtil.findAll(em, FaProgram.class).get(0);
+        }
+        totalSeat.setFacultyProgram(faProgram);
         return totalSeat;
     }
     /**
@@ -125,6 +135,16 @@ public class TotalSeatResourceIT {
             .createdOn(UPDATED_CREATED_ON)
             .modifiedOn(UPDATED_MODIFIED_ON)
             .modifiedBy(UPDATED_MODIFIED_BY);
+        // Add required entity
+        FaProgram faProgram;
+        if (TestUtil.findAll(em, FaProgram.class).isEmpty()) {
+            faProgram = FaProgramResourceIT.createUpdatedEntity(em);
+            em.persist(faProgram);
+            em.flush();
+        } else {
+            faProgram = TestUtil.findAll(em, FaProgram.class).get(0);
+        }
+        totalSeat.setFacultyProgram(faProgram);
         return totalSeat;
     }
 
@@ -645,12 +665,8 @@ public class TotalSeatResourceIT {
     @Test
     @Transactional
     public void getAllTotalSeatsByFacultyProgramIsEqualToSomething() throws Exception {
-        // Initialize the database
-        totalSeatRepository.saveAndFlush(totalSeat);
-        FaProgram facultyProgram = FaProgramResourceIT.createEntity(em);
-        em.persist(facultyProgram);
-        em.flush();
-        totalSeat.setFacultyProgram(facultyProgram);
+        // Get already existing entity
+        FaProgram facultyProgram = totalSeat.getFacultyProgram();
         totalSeatRepository.saveAndFlush(totalSeat);
         Long facultyProgramId = facultyProgram.getId();
 

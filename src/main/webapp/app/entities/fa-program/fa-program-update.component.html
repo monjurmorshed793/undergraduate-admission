@@ -40,25 +40,43 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_semester">Semester</label>
                     <select class="form-control" id="field_semester" name="semester" formControlName="semesterId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('semesterId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="semesterOption.id" *ngFor="let semesterOption of semesters; trackBy: trackById">{{ semesterOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('semesterId')!.invalid && (editForm.get('semesterId')!.dirty || editForm.get('semesterId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('semesterId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_faculty">Faculty</label>
                     <select class="form-control" id="field_faculty" name="faculty" formControlName="facultyId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('facultyId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="facultyOption.id" *ngFor="let facultyOption of faculties; trackBy: trackById">{{ facultyOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('facultyId')!.invalid && (editForm.get('facultyId')!.dirty || editForm.get('facultyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('facultyId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_program">Program</label>
                     <select class="form-control" id="field_program" name="program" formControlName="programId">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('programId')!.value" [ngValue]="null" selected></option>
                         <option [ngValue]="programOption.id" *ngFor="let programOption of programs; trackBy: trackById">{{ programOption.name }}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('programId')!.invalid && (editForm.get('programId')!.dirty || editForm.get('programId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('programId')?.errors?.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
 

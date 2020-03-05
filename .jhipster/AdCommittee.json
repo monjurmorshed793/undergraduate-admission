@@ -19,6 +19,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "semester",
             "otherEntityRelationshipName": "adCommittee",
+            "relationshipValidateRules": "required",
             "relationshipName": "semester",
             "otherEntityField": "name"
         },
@@ -26,6 +27,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "faculty",
             "otherEntityRelationshipName": "adCommittee",
+            "relationshipValidateRules": "required",
             "relationshipName": "faculty",
             "otherEntityField": "name"
         },
@@ -33,6 +35,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "admissionDesignation",
             "otherEntityRelationshipName": "adCommittee",
+            "relationshipValidateRules": "required",
             "relationshipName": "designation",
             "otherEntityField": "name"
         },
@@ -40,6 +43,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "adCommittee",
+            "relationshipValidateRules": "required",
             "relationshipName": "user",
             "otherEntityField": "id"
         }

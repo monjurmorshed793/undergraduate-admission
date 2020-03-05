@@ -109,6 +109,41 @@ public class AdCommitteeResourceIT {
             .createdOn(DEFAULT_CREATED_ON)
             .modifiedOn(DEFAULT_MODIFIED_ON)
             .modifiedBy(DEFAULT_MODIFIED_BY);
+        // Add required entity
+        Semester semester;
+        if (TestUtil.findAll(em, Semester.class).isEmpty()) {
+            semester = SemesterResourceIT.createEntity(em);
+            em.persist(semester);
+            em.flush();
+        } else {
+            semester = TestUtil.findAll(em, Semester.class).get(0);
+        }
+        adCommittee.setSemester(semester);
+        // Add required entity
+        Faculty faculty;
+        if (TestUtil.findAll(em, Faculty.class).isEmpty()) {
+            faculty = FacultyResourceIT.createEntity(em);
+            em.persist(faculty);
+            em.flush();
+        } else {
+            faculty = TestUtil.findAll(em, Faculty.class).get(0);
+        }
+        adCommittee.setFaculty(faculty);
+        // Add required entity
+        AdmissionDesignation admissionDesignation;
+        if (TestUtil.findAll(em, AdmissionDesignation.class).isEmpty()) {
+            admissionDesignation = AdmissionDesignationResourceIT.createEntity(em);
+            em.persist(admissionDesignation);
+            em.flush();
+        } else {
+            admissionDesignation = TestUtil.findAll(em, AdmissionDesignation.class).get(0);
+        }
+        adCommittee.setDesignation(admissionDesignation);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        adCommittee.setUser(user);
         return adCommittee;
     }
     /**
@@ -122,6 +157,41 @@ public class AdCommitteeResourceIT {
             .createdOn(UPDATED_CREATED_ON)
             .modifiedOn(UPDATED_MODIFIED_ON)
             .modifiedBy(UPDATED_MODIFIED_BY);
+        // Add required entity
+        Semester semester;
+        if (TestUtil.findAll(em, Semester.class).isEmpty()) {
+            semester = SemesterResourceIT.createUpdatedEntity(em);
+            em.persist(semester);
+            em.flush();
+        } else {
+            semester = TestUtil.findAll(em, Semester.class).get(0);
+        }
+        adCommittee.setSemester(semester);
+        // Add required entity
+        Faculty faculty;
+        if (TestUtil.findAll(em, Faculty.class).isEmpty()) {
+            faculty = FacultyResourceIT.createUpdatedEntity(em);
+            em.persist(faculty);
+            em.flush();
+        } else {
+            faculty = TestUtil.findAll(em, Faculty.class).get(0);
+        }
+        adCommittee.setFaculty(faculty);
+        // Add required entity
+        AdmissionDesignation admissionDesignation;
+        if (TestUtil.findAll(em, AdmissionDesignation.class).isEmpty()) {
+            admissionDesignation = AdmissionDesignationResourceIT.createUpdatedEntity(em);
+            em.persist(admissionDesignation);
+            em.flush();
+        } else {
+            admissionDesignation = TestUtil.findAll(em, AdmissionDesignation.class).get(0);
+        }
+        adCommittee.setDesignation(admissionDesignation);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        adCommittee.setUser(user);
         return adCommittee;
     }
 
@@ -515,12 +585,8 @@ public class AdCommitteeResourceIT {
     @Test
     @Transactional
     public void getAllAdCommitteesBySemesterIsEqualToSomething() throws Exception {
-        // Initialize the database
-        adCommitteeRepository.saveAndFlush(adCommittee);
-        Semester semester = SemesterResourceIT.createEntity(em);
-        em.persist(semester);
-        em.flush();
-        adCommittee.setSemester(semester);
+        // Get already existing entity
+        Semester semester = adCommittee.getSemester();
         adCommitteeRepository.saveAndFlush(adCommittee);
         Long semesterId = semester.getId();
 
@@ -535,12 +601,8 @@ public class AdCommitteeResourceIT {
     @Test
     @Transactional
     public void getAllAdCommitteesByFacultyIsEqualToSomething() throws Exception {
-        // Initialize the database
-        adCommitteeRepository.saveAndFlush(adCommittee);
-        Faculty faculty = FacultyResourceIT.createEntity(em);
-        em.persist(faculty);
-        em.flush();
-        adCommittee.setFaculty(faculty);
+        // Get already existing entity
+        Faculty faculty = adCommittee.getFaculty();
         adCommitteeRepository.saveAndFlush(adCommittee);
         Long facultyId = faculty.getId();
 
@@ -555,12 +617,8 @@ public class AdCommitteeResourceIT {
     @Test
     @Transactional
     public void getAllAdCommitteesByDesignationIsEqualToSomething() throws Exception {
-        // Initialize the database
-        adCommitteeRepository.saveAndFlush(adCommittee);
-        AdmissionDesignation designation = AdmissionDesignationResourceIT.createEntity(em);
-        em.persist(designation);
-        em.flush();
-        adCommittee.setDesignation(designation);
+        // Get already existing entity
+        AdmissionDesignation designation = adCommittee.getDesignation();
         adCommitteeRepository.saveAndFlush(adCommittee);
         Long designationId = designation.getId();
 
@@ -575,12 +633,8 @@ public class AdCommitteeResourceIT {
     @Test
     @Transactional
     public void getAllAdCommitteesByUserIsEqualToSomething() throws Exception {
-        // Initialize the database
-        adCommitteeRepository.saveAndFlush(adCommittee);
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        adCommittee.setUser(user);
+        // Get already existing entity
+        User user = adCommittee.getUser();
         adCommitteeRepository.saveAndFlush(adCommittee);
         Long userId = user.getId();
 
