@@ -56,9 +56,9 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:oracle:thin:@103.23.42.69:1521:prod
-    username: db_iums_ugadmission
-    password: ig100
+    url: ${env.admission_host}
+    username: ${env.admission_username}
+    password: ${env.admission_password}
     hikari:
       poolName: Hikari
       auto-commit: false
