@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity AdCommittee.
+    -->
+    <changeSet id="20200305142300-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="semester_id"
+                                 baseTableName="ad_committee"
+                                 constraintName="fk_ad_committee_semester_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="semester"/>
+
+        <addForeignKeyConstraint baseColumnNames="faculty_id"
+                                 baseTableName="ad_committee"
+                                 constraintName="fk_ad_committee_faculty_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="faculty"/>
+
+        <addForeignKeyConstraint baseColumnNames="designation_id"
+                                 baseTableName="ad_committee"
+                                 constraintName="ad_committee_designation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="admission_designation"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="ad_committee"
+                                 constraintName="fk_ad_committee_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Fa Programs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fa-program" [routerLink]="['/fa-program/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Fa Program
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="faPrograms?.length === 0">
+        <span>No faPrograms found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="faPrograms?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdOn"><span>Created On</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modifiedOn"><span>Modified On</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="semesterName"><span>Semester</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="facultyName"><span>Faculty</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="programName"><span>Program</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let faProgram of faPrograms ;trackBy: trackId">
+                    <td><a [routerLink]="['/fa-program', faProgram.id, 'view']">{{ faProgram.id }}</a></td>
+                    <td>{{ faProgram.createdOn | date:'mediumDate' }}</td>
+                    <td>{{ faProgram.modifiedOn | date:'mediumDate' }}</td>
+                    <td>{{ faProgram.modifiedBy }}</td>
+                    <td>
+                        <div *ngIf="faProgram.semesterId">
+                            <a [routerLink]="['/semester', faProgram.semesterId , 'view']" >{{ faProgram.semesterName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="faProgram.facultyId">
+                            <a [routerLink]="['/faculty', faProgram.facultyId , 'view']" >{{ faProgram.facultyName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="faProgram.programId">
+                            <a [routerLink]="['/program', faProgram.programId , 'view']" >{{ faProgram.programName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/fa-program', faProgram.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/fa-program', faProgram.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(faProgram)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

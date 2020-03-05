@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="totalSeat">
+            <h2><span>Total Seat</span> {{ totalSeat.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Seat</span></dt>
+                <dd>
+                    <span>{{ totalSeat.seat }}</span>
+                </dd>
+                <dt><span>Created On</span></dt>
+                <dd>
+                    <span>{{ totalSeat.createdOn }}</span>
+                </dd>
+                <dt><span>Modified On</span></dt>
+                <dd>
+                    <span>{{ totalSeat.modifiedOn }}</span>
+                </dd>
+                <dt><span>Modified By</span></dt>
+                <dd>
+                    <span>{{ totalSeat.modifiedBy }}</span>
+                </dd>
+                <dt><span>Faculty Program</span></dt>
+                <dd>
+                    <div *ngIf="totalSeat.facultyProgramId">
+                        <a [routerLink]="['/fa-program', totalSeat.facultyProgramId, 'view']">{{ totalSeat.facultyProgramId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/total-seat', totalSeat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

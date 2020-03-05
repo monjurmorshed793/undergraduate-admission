@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="adCommittee">
+            <h2><span>Ad Committee</span> {{ adCommittee.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Created On</span></dt>
+                <dd>
+                    <span>{{ adCommittee.createdOn }}</span>
+                </dd>
+                <dt><span>Modified On</span></dt>
+                <dd>
+                    <span>{{ adCommittee.modifiedOn }}</span>
+                </dd>
+                <dt><span>Modified By</span></dt>
+                <dd>
+                    <span>{{ adCommittee.modifiedBy }}</span>
+                </dd>
+                <dt><span>Semester</span></dt>
+                <dd>
+                    <div *ngIf="adCommittee.semesterId">
+                        <a [routerLink]="['/semester', adCommittee.semesterId, 'view']">{{ adCommittee.semesterName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Faculty</span></dt>
+                <dd>
+                    <div *ngIf="adCommittee.facultyId">
+                        <a [routerLink]="['/faculty', adCommittee.facultyId, 'view']">{{ adCommittee.facultyName }}</a>
+                    </div>
+                </dd>
+                <dt><span>Designation</span></dt>
+                <dd>
+                    <div *ngIf="adCommittee.designationId">
+                        <a [routerLink]="['/admission-designation', adCommittee.designationId, 'view']">{{ adCommittee.designationName }}</a>
+                    </div>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{ adCommittee.userId }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ad-committee', adCommittee.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

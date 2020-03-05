@@ -1,0 +1,50 @@
+{
+    "name": "FacultyProgram",
+    "fields": [
+        {
+            "fieldName": "createdOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "semester",
+            "otherEntityRelationshipName": "facultyProgram",
+            "relationshipName": "semester",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "faculty",
+            "otherEntityRelationshipName": "facultyProgram",
+            "relationshipName": "faculty",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "program",
+            "otherEntityRelationshipName": "facultyProgram",
+            "relationshipName": "program",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200305142600",
+    "entityTableName": "faculty_program",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

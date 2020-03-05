@@ -1,0 +1,64 @@
+{
+    "name": "AdmissionCommittee",
+    "fields": [
+        {
+            "fieldName": "createdOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "semester",
+            "otherEntityRelationshipName": "admissionCommittee",
+            "relationshipName": "semester",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "faculty",
+            "otherEntityRelationshipName": "admissionCommittee",
+            "relationshipName": "faculty",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "admissionDesignation",
+            "otherEntityRelationshipName": "admissionCommittee",
+            "relationshipName": "designation",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "admissionCommittee",
+            "relationshipName": "user",
+            "otherEntityField": "firstName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "admissionCommittee",
+            "relationshipName": "user",
+            "otherEntityField": "lastName"
+        }
+    ],
+    "changelogDate": "20200305142300",
+    "entityTableName": "admission_committee",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

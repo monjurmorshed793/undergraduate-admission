@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span>Semesters</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-semester" [routerLink]="['/semester/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Semester
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="semesters?.length === 0">
+        <span>No semesters found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="semesters?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="semesterId"><span>Semester Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shortName"><span>Short Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span>Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdOn"><span>Created On</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modifiedOn"><span>Modified On</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="modifiedBy"><span>Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let semester of semesters ;trackBy: trackId">
+                    <td><a [routerLink]="['/semester', semester.id, 'view']">{{ semester.id }}</a></td>
+                    <td>{{ semester.semesterId }}</td>
+                    <td>{{ semester.name }}</td>
+                    <td>{{ semester.shortName }}</td>
+                    <td>{{ semester.status }}</td>
+                    <td>{{ semester.startDate | date:'mediumDate' }}</td>
+                    <td>{{ semester.endDate | date:'mediumDate' }}</td>
+                    <td>{{ semester.createdOn | date:'mediumDate' }}</td>
+                    <td>{{ semester.modifiedOn | date:'mediumDate' }}</td>
+                    <td>{{ semester.modifiedBy }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/semester', semester.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/semester', semester.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(semester)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
