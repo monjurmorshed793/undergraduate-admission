@@ -1,10 +1,10 @@
 entity Semester{
-	semesterId Integer,
-    semesterName String,
-    shortName String,
-    status SemesterStatus,
-    startDate LocalDate,
-    endDate LocalDate,
+	semesterId Integer required,
+    semesterName String required,
+    shortName String required,
+    status SemesterStatus required,
+    startDate LocalDate required,
+    endDate LocalDate required,
     createdOn LocalDate,
     modifiedOn LocalDate,
     modifiedBy String
@@ -16,42 +16,74 @@ enum SemesterStatus {
 }
 
 entity Faculty{
-	name String,
-    shortName String,
+	name String required,
+    shortName String required,
+    createdOn LocalDate required,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+entity AdmissionCommittee{
     createdOn LocalDate,
     modifiedOn LocalDate,
     modifiedBy String
 }
 
-entity AdmissionChairman{
-	createdOn LocalDate,
+
+entity AdmissionDesignation{
+    name String required,
+    description TextBlob max(500),
+    createdOn LocalDate,
     modifiedOn LocalDate,
     modifiedBy String
 }
+
 
 entity Program{
-	programid Integer,
-    name String,
+	programId Integer required,
+    name String required,
     createdOn LocalDate,
     modifiedOn LocalDate,
     modifiedBy String
 }
 
+entity FacultyPrograms{
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
 
+entity TotalSeat{
+    seat Integer required,
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+enum QuotaType{
+    GENERAL (GL),
+    FREEDOM_FIGHTER (FF),
+    REMOTE_AREA (RL),
+    ENGLISH_MEDIUM (GCE)
+}
 
 relationship ManyToOne{
-	AdmissionChairman{user(firstName)} to User,
-    AdmissionChairman{user(lastName)} to User,
-    AdmissionChairman{faculty(name)} to Faculty,
-    AdmissionChairman{semester(name)} to Semester
-
+    AdmissionCommittee{semester(name)} to Semester required,
+    AdmissionCommittee{faculty(name)} to Faculty required,
+    AdmissionCommittee{designation(name)} to AdmissionDesignation required,
+	AdmissionCommittee{user(firstName)} to User required,
+    AdmissionCommittee{user(lastName)} to User required,
+    FacultyPrograms{semester(name)} to Semester required,
+    FacultyPrograms{faculty(name)} to Faculty required,
+    FacultyPrograms{program(name)} to Program required,
+    TotalSeat {facultyProgram} to FacultyProgram required
 }
 
 
 dto all with mapstruct
-paginate Semester, Faculty, AdmissionChairman, Program with infinite-scroll
-service Semester, Faculty, AdmissionChairman, Program with serviceClass
-filter Semester, Faculty, AdmissionChairman, Program
+paginate Semester, Faculty, AdmissionCommittee, Program, AdmissionDesignation, FacultyPrograms, TotalSeat with infinite-scroll
+service Semester, Faculty, AdmissionCommittee, Program, AdmissionDesignation, FacultyPrograms, TotalSeat with serviceClass
+filter Semester, Faculty, AdmissionCommittee, Program, Designation, FacultyPrograms, TotalSeat
 
 
 
