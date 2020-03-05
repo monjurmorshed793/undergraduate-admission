@@ -13,6 +13,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
+import { FooterExtendedComponent } from 'app/layouts/footer/footer-extended.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     UgAdmissionEntityModule,
     UgAdmissionAppRoutingModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterExtendedComponent],
   bootstrap: [MainComponent]
 })
 export class UgAdmissionAppModule {}

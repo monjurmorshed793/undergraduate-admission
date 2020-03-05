@@ -1,0 +1,58 @@
+entity Semester{
+	semesterId Integer,
+    semesterName String,
+    shortName String,
+    status SemesterStatus,
+    startDate LocalDate,
+    endDate LocalDate,
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+enum SemesterStatus {
+    ACTIVE(1),
+    INACTIVE(0)
+}
+
+entity Faculty{
+	name String,
+    shortName String,
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+entity AdmissionChairman{
+	createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+entity Program{
+	programid Integer,
+    name String,
+    createdOn LocalDate,
+    modifiedOn LocalDate,
+    modifiedBy String
+}
+
+
+
+relationship ManyToOne{
+	AdmissionChairman{user(firstName)} to User,
+    AdmissionChairman{user(lastName)} to User,
+    AdmissionChairman{faculty(name)} to Faculty,
+    AdmissionChairman{semester(name)} to Semester
+
+}
+
+
+dto all with mapstruct
+paginate Semester, Faculty, AdmissionChairman, Program with infinite-scroll
+service Semester, Faculty, AdmissionChairman, Program with serviceClass
+filter Semester, Faculty, AdmissionChairman, Program
+
+
+
+
