@@ -9,8 +9,11 @@ import { SemesterDeleteDialogComponent } from './semester-delete-dialog.componen
 import { semesterRoute } from './semester.route';
 
 @NgModule({
-  imports: [UgAdmissionSharedModule, RouterModule.forChild(semesterRoute)],
+  imports: [
+    UgAdmissionSharedModule,
+    RouterModule.forChild(semesterRoute)
+  ] /*,
   declarations: [SemesterComponent, SemesterDetailComponent, SemesterUpdateComponent, SemesterDeleteDialogComponent],
-  entryComponents: [SemesterDeleteDialogComponent]
+  entryComponents: [SemesterDeleteDialogComponent]*/
 })
 export class UgAdmissionSemesterModule {}

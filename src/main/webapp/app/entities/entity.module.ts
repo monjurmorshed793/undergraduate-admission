@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'semester',
-        loadChildren: () => import('./semester/semester.module').then(m => m.UgAdmissionSemesterModule)
+        loadChildren: () => import('./extended/semester/semester-extended.module').then(m => m.UgAdmissionSemesterExtendedModule)
       },
       {
         path: 'faculty',
