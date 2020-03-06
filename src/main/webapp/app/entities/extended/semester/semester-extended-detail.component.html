@@ -1,17 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="semester">
-            <h2><span>Semester</span> {{ semester.id }}</h2>
+            <h2><span>Semester</span> {{ semester.name }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span>Semester Id</span></dt>
-                <dd>
-                    <span>{{ semester.semesterId }}</span>
-                </dd>
                 <dt><span>Name</span></dt>
                 <dd>
                     <span>{{ semester.name }}</span>
@@ -26,19 +22,19 @@
                 </dd>
                 <dt><span>Start Date</span></dt>
                 <dd>
-                    <span>{{ semester.startDate }}</span>
+                    <span>{{ semester.startDate | date: 'mediumDate' }}</span>
                 </dd>
                 <dt><span>End Date</span></dt>
                 <dd>
-                    <span>{{ semester.endDate }}</span>
+                    <span>{{ semester.endDate | date: 'mediumDate' }}</span>
                 </dd>
                 <dt><span>Created On</span></dt>
                 <dd>
-                    <span>{{ semester.createdOn }}</span>
+                    <span>{{ semester.createdOn | date: 'mediumDate' }}</span>
                 </dd>
                 <dt><span>Modified On</span></dt>
                 <dd>
-                    <span>{{ semester.modifiedOn }}</span>
+                    <span>{{ semester.modifiedOn | date: 'mediumDate' }}</span>
                 </dd>
                 <dt><span>Modified By</span></dt>
                 <dd>
